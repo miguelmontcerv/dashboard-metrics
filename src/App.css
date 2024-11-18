@@ -1,0 +1,121 @@
+.LiveView {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #edf5ff; /* Color de fondo para la página */
+  padding: 20px; /* Añadir un padding para que los elementos no queden pegados al borde */
+}
+
+.logo {
+  width: 200px; /* Ajusta el ancho según el tamaño de tu logo */
+  margin-bottom: 10px; /* Espacio entre el logo y el título */
+}
+
+.data-container {
+  background-color: #f5e3d0; /* Beige */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.data-container h2 {
+  margin-bottom: 5px; /* Espacio entre el título y los datos */
+}
+
+.data-container p {
+  margin: 5px 0; /* Espacio entre cada dato */
+}
+
+.mex-container {
+  background-color: #b6f5bd; /* Beige */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.mex-container h4 {
+  margin-bottom: 5px; /* Espacio entre el título y los datos */
+}
+
+.mex-container p {
+  margin: 5px 0; /* Espacio entre cada dato */
+}
+
+.arg-container {
+  background-color: #9fcdff; /* Beige */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.arg-container h4 {
+  margin-bottom: 5px; /* Espacio entre el título y los datos */
+}
+
+.arg-container p {
+  margin: 5px 0; /* Espacio entre cada dato */
+}
+
+.deu-container {
+  background-color: #f3e673; /* Beige */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.deu-container h4 {
+  margin-bottom: 5px; /* Espacio entre el título y los datos */
+  font-weight: bold;
+}
+
+.deu-container ul {
+  list-style-type: none; /* Quitar el estilo de la lista */
+  padding: 0;
+}
+
+.deu-container li {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+  .deu-container {
+    padding: 10px;
+  }
+}
+
+
+.jpn-container {
+  background-color: #f27a7a; /* Beige */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.jpn-container h4 {
+  margin-bottom: 5px; /* Espacio entre el título y los datos */
+}
+
+.jpn-container p {
+  margin: 5px 0; /* Espacio entre cada dato */
+}
+
+canvas {
+  background-color: #fff; /* Color de fondo para el gráfico */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+  width: 80%; /* Ajusta el ancho del contenedor del gráfico según tu preferencia */
+  max-width: 800px; /* Establece un máximo para el ancho del contenedor */
+  margin: 20px;
+}
