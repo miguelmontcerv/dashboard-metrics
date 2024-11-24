@@ -218,8 +218,8 @@ function App() {
 
       <br></br>
       <div className="deu-container">
-        <h4 onClick={ toggleVisibilityDeu} style={{ cursor: 'pointer' }}>
-          Programas de Ciencia, Tecnología e Innovación de Alemania (282 programas):
+        <h4 onClick={toggleVisibilityDeu} style={{ cursor: 'pointer' }}>
+          Programas de Ciencia, Tecnología e Innovación de Alemania (287 programas):
         </h4>
         <h5>Datos del International database on STI policies</h5>
         {isVisibleDeu && (
