@@ -17,7 +17,7 @@ function App() {
     México: 'rgba(3, 147, 17, 1)'       // '#039311'
   };
 
-  const apiKey = "AIzaSyCjHQXVOJ7Npg4mg04V7GbLLQOkCPgph-w";
+  const JordanVeintiTrr = "AIzaSyCjHQXVOJ7Npg4mg04V7GbLLQOkCPgph-w";
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,11 +25,11 @@ function App() {
 
   useEffect(() => {
     // Inicializa la API de Gemini cuando se proporcione la clave
-    if (apiKey) {
-        const newGenAI = new GoogleGenerativeAI(apiKey);
+    if (JordanVeintiTrr) {
+        const newGenAI = new GoogleGenerativeAI(JordanVeintiTrr);
         setGenAI(newGenAI);
     }
-  }, [apiKey]);
+  }, [JordanVeintiTrr]);
 
   const [isVisibleDeu, setisVisibleDeu] = useState(false);
   const  toggleVisibilityDeu = () => {
@@ -71,16 +71,16 @@ function App() {
 
   useEffect(() => {
     // Inicializa la API de Gemini cuando se proporcione la clave
-    if (apiKey) {
-        const newGenAI = new GoogleGenerativeAI(apiKey);
+    if (JordanVeintiTrr) {
+        const newGenAI = new GoogleGenerativeAI(JordanVeintiTrr);
         setGenAI(newGenAI);
     }
-  }, [apiKey]);
+  }, [JordanVeintiTrr]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!apiKey) {
+    if (!JordanVeintiTrr) {
         alert("Por favor, introduce tu API Key.");
         return;
     }
