@@ -98,7 +98,7 @@ function App() {
         temperature: 1,
         topP: 0.95,
         topK: 40,
-        maxOutputTokens: 8192,
+        maxOutputTokens: 500,
         responseMimeType: "text/plain",
       };
 
@@ -107,7 +107,7 @@ function App() {
         history: [], // Aquí puedes agregar historial si lo necesitas
       });
 
-      const message_to_send = input + ", considera los datos del " + selectedVariable + "Estos son los datos " + JSON.stringify(parsedDataPlot, null, 2) + ". Son datos desde el 2013 al 2024. Da una respuesta como si fueras un experto en metricas de Ciencia, tecnologia e innovación"; 
+      const message_to_send = input + ", considera los datos del " + selectedVariable + "Estos son los datos " + JSON.stringify(parsedDataPlot, null, 2) + ". Son datos desde el 2013 al 2024. Da una respuesta como si fueras un experto en metricas de Ciencia, tecnologia e innovación. Limita tus respuestas a MAXIMO 300 palabras, no utilices * ni _ por que no se renderizan, todo en ESPAÑOL."; 
       console.log(message_to_send)
 
       const result = await chatSession.sendMessage(message_to_send);
@@ -262,7 +262,8 @@ function App() {
       </div>
       
       <div className="App">
-      <h1>Chatbot con Gemini</h1>
+      <h2>¿Tienes dudas?</h2>
+      <h3>¡Chatea con un experto!</h3>
         <form onSubmit={handleSubmit}>
         <input className="gemini-input" type="text" placeholder="Escribe tu mensaje..." value={input} onChange={(e) => setInput(e.target.value)} />
 
