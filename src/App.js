@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import { Chart } from 'chart.js/auto';
 import { dataSets } from './data'; // Importa tus datos
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import logo from './assets/logo_sin_fondo.png';
 
 function App() {
@@ -15,6 +16,20 @@ function App() {
     Japón: 'rgba(194, 0, 0, 1)',        // '#c20000'
     México: 'rgba(3, 147, 17, 1)'       // '#039311'
   };
+
+  const apiKey = "AIzaSyCjHQXVOJ7Npg4mg04V7GbLLQOkCPgph-w";
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [genAI, setGenAI] = useState(null);
+
+  useEffect(() => {
+    // Inicializa la API de Gemini cuando se proporcione la clave
+    if (apiKey) {
+        const newGenAI = new GoogleGenerativeAI(apiKey);
+        setGenAI(newGenAI);
+    }
+  }, [apiKey]);
 
   const [isVisibleDeu, setisVisibleDeu] = useState(false);
   const  toggleVisibilityDeu = () => {
@@ -53,6 +68,58 @@ function App() {
     }));
     setParsedDataPlot(newParsedDataPlot);
   }, [selectedPaises, selectedVariable]);
+
+  useEffect(() => {
+    // Inicializa la API de Gemini cuando se proporcione la clave
+    if (apiKey) {
+        const newGenAI = new GoogleGenerativeAI(apiKey);
+        setGenAI(newGenAI);
+    }
+  }, [apiKey]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!apiKey) {
+        alert("Por favor, introduce tu API Key.");
+        return;
+    }
+
+    if (!genAI) {
+      console.error("genAI no está inicializado. Revisa tu clave API.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const generationConfig = {
+        temperature: 1,
+        topP: 0.95,
+        topK: 40,
+        maxOutputTokens: 8192,
+        responseMimeType: "text/plain",
+      };
+
+      const chatSession = model.startChat({
+        generationConfig,
+        history: [], // Aquí puedes agregar historial si lo necesitas
+      });
+
+      const message_to_send = input + ", considera los datos del " + selectedVariable + "Estos son los datos " + JSON.stringify(parsedDataPlot, null, 2) + ". Son datos desde el 2013 al 2024. Da una respuesta como si fueras un experto en metricas de Ciencia, tecnologia e innovación"; 
+      console.log(message_to_send)
+
+      const result = await chatSession.sendMessage(message_to_send);
+
+      setOutput(result.response.text());
+    } catch (error) {
+      console.error("Error al comunicarse con la API Gemini:", error);
+      setOutput("Hubo un error al procesar tu solicitud. Revisa la consola para más detalles.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const existingChart = Chart.getChart('myChart');
@@ -194,6 +261,24 @@ function App() {
         )}
       </div>
       
+      <div className="App">
+      <h1>Chatbot con Gemini</h1>
+        <form onSubmit={handleSubmit}>
+        <input className="gemini-input" type="text" placeholder="Escribe tu mensaje..." value={input} onChange={(e) => setInput(e.target.value)} />
+
+          <button type="submit" disabled={loading}>
+            {loading ? "Enviando..." : "Enviar"}
+          </button>
+        </form>
+        <br></br>
+
+        {output && (
+          
+          <div className="gemini-output">
+          <p>{output}</p>
+        </div>
+        )}
+      </div>
 
     </div>
   );

@@ -119,3 +119,47 @@ canvas {
   max-width: 800px; /* Establece un máximo para el ancho del contenedor */
   margin: 20px;
 }
+
+/* En App.css */
+
+.gemini-chat-container {
+  background-color: #fff; /* O el color que prefieras */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 80%; /* Ajusta el ancho según tus necesidades */
+  max-width: 600px; /* Limita el ancho máximo */
+}
+
+.gemini-input {
+  width: calc(100% - 20px); /* Ocupa todo el ancho del contenedor menos el padding */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Para que el padding no afecte el tamaño total */
+}
+
+.gemini-output {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+  white-space: pre-line; /* Para respetar los saltos de línea */
+  overflow-wrap: break-word; /* Evita que las palabras largas desborden el contenedor */
+}
+
+.gemini-chat-message { /* Estilos para cada mensaje individual */
+  margin-bottom: 10px;
+}
+
+.gemini-chat-message.user { /* Estilos para los mensajes del usuario */
+  text-align: right;
+}
+
+.gemini-chat-message.bot { /* Estilos para los mensajes del bot */
+  text-align: left;
+}
+
