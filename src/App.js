@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
-import { Chart } from 'chart.js/auto';
+import { Chart, Title } from 'chart.js/auto';
 import { dataSets } from './data'; // Importa tus datos
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import logo from './assets/logo_sin_fondo.png';
@@ -11,10 +11,10 @@ function App() {
   const [selectedVariable, setSelectedVariable] = useState("PIB");
   const chartRef = useRef();
   const colorPais = {
-    Argentina: 'rgba(159, 205, 255, 1)', // '#9fcdff'
-    Alemania: 'rgba(235, 211, 0, 1)',   // '#ebd300'
-    Japón: 'rgba(194, 0, 0, 1)',        // '#c20000'
-    México: 'rgba(3, 147, 17, 1)'       // '#039311'
+    Argentina: 'rgb(0, 74, 152)', // '#9fcdff'
+    Alemania: 'rgb(168, 151, 0)',   // '#ebd300'
+    Japón: 'rgb(152, 0, 0)',        // '#c20000'
+    México: 'rgb(0, 115, 12)'       // '#039311'
   };
 
   const JordanVeintiTrr = "AIzaSyCjHQXVOJ7Npg4mg04V7GbLLQOkCPgph-w";
@@ -63,8 +63,8 @@ function App() {
       label: pais,
       data: dataSets[selectedVariable][pais],
       borderColor: colorPais[pais],
-      borderWidth: 1,
-      fill: false,
+      borderWidth: 3,
+      fill: false
     }));
     setParsedDataPlot(newParsedDataPlot);
   }, [selectedPaises, selectedVariable]);
@@ -104,14 +104,16 @@ function App() {
 
       const chatSession = model.startChat({
         generationConfig,
-        history: [], // Aquí puedes agregar historial si lo necesitas
+        history: [
+        ], //No jala el historial
       });
 
-      const message_to_send = input + ", considera los datos del " + selectedVariable + "Estos son los datos " + JSON.stringify(parsedDataPlot, null, 2) + ". Son datos desde el 2013 al 2024. Da una respuesta como si fueras un experto en metricas de Ciencia, tecnologia e innovación. Limita tus respuestas a MAXIMO 300 palabras, no utilices * ni _ por que no se renderizan, todo en ESPAÑOL."; 
+      const message_to_send = input + ", considera los datos del " + selectedVariable + ", los datos son los siguientes: " + JSON.stringify(parsedDataPlot, null, 2) + ". Son datos desde el 2013 al 2023. Da una respuesta como si fueras un experto en metricas de Ciencia, tecnologia e innovación. Limita tus respuestas a MAXIMO 300 palabras, no utilices * ni _ por que no se renderizan, todo en ESPAÑOL."; 
       console.log(message_to_send)
 
       const result = await chatSession.sendMessage(message_to_send);
-
+      //const result =  message_to_send;
+      
       setOutput(result.response.text());
     } catch (error) {
       console.error("Error al comunicarse con la API Gemini:", error);
@@ -198,7 +200,10 @@ function App() {
       </div>
 
       <div className="chart-container">
+        <center> <h4> {dataSets[selectedVariable].category} (2013 - 2023) </h4> </center>
+    
         <canvas ref={chartRef} id="myChart" width="400" height="200"></canvas>
+        <center> <p> Fuente: {dataSets[selectedVariable].source} </p> </center>
       </div>
       
       <br></br>

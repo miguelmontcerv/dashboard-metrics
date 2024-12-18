@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #edf5ff; /* Color de fondo para la página */
+  background-color: #ffffff; /* Color de fondo para la página */
   padding: 20px; /* Añadir un padding para que los elementos no queden pegados al borde */
 }
 
@@ -46,7 +46,7 @@
 }
 
 .arg-container {
-  background-color: #9fcdff; /* Beige */
+  background-color: #9fcdff; /* Azulito */
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 15px;
